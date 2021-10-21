@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="SlowLearnerEntities-Web.config Connection String" description="SlowLearnerEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.SlowlearnerModel.csdl|res://*/Models.SlowlearnerModel.ssdl|res://*/Models.SlowlearnerModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=localhost;initial catalog=SlowLearner;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\kamran\.gull\\source\\repos\\SlowLearnerApi\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='SlowLearnerEntities']/@connectionString" />
+  </parameter>
+</parameters>
