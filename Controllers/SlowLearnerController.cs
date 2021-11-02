@@ -55,5 +55,56 @@ namespace SlowLearnerApi.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
+        [HttpGet]
+        public HttpResponseMessage ApproveUnApproveUser(int UserId, bool b)
+        {
+            try
+            {
+                var user = db.Users.Where(x => x.UserId == UserId).FirstOrDefault();
+                if (user != null)
+                {
+                    user.IsApproved = b;
+                    db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, user);
+
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+        [HttpGet]
+        public HttpResponseMessage GetMyPatients(int DoctorId)
+        {
+            try
+            {
+                
+                return Request.CreateResponse(HttpStatusCode.OK, db.Users.Where(x=>x.ReferenceUserId==DoctorId && x.UserRole=="Patient").ToList());
+
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+        [HttpGet]
+        public HttpResponseMessage GetMyPA(int DoctorId)
+        {
+            try
+            {
+
+                return Request.CreateResponse(HttpStatusCode.OK, db.Users.Where(x => x.ReferenceUserId == DoctorId && x.UserRole == "PA").ToList());
+
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
     }
 }
