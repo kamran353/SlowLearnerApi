@@ -6,6 +6,9 @@
     <edmx:Diagrams>
       <Diagram DiagramId="82325ffb28e74942ba50341c586ac02c" Name="Diagram1">
         <EntityTypeShape EntityType="SlowLearnerModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SlowLearnerModel.PatientAttendant" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SlowLearnerModel.PatientWord" Width="1.5" PointX="3.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SlowLearnerModel.Word" Width="1.5" PointX="0.75" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

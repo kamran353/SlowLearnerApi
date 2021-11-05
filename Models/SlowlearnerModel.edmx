@@ -4,7 +4,23 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SlowLearnerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SlowLearnerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PatientAttendants">
+          <Key>
+            <PropertyRef Name="PatientAttendantId" />
+          </Key>
+          <Property Name="PatientAttendantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientId" Type="int" />
+          <Property Name="AttendantId" Type="int" />
+        </EntityType>
+        <EntityType Name="PatientWords">
+          <Key>
+            <PropertyRef Name="PatientWordId" />
+          </Key>
+          <Property Name="PatientWordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientId" Type="int" />
+          <Property Name="WordId" Type="int" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserId" />
@@ -19,11 +35,22 @@
           <Property Name="UserRole" Type="varchar" MaxLength="100" />
           <Property Name="ReferenceUserId" Type="int" />
         </EntityType>
+        <EntityType Name="Words">
+          <Key>
+            <PropertyRef Name="WordId" />
+          </Key>
+          <Property Name="WordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WordText" Type="varchar(max)" />
+          <Property Name="ImagePath" Type="varchar(max)" />
+          <Property Name="WordCategory" Type="varchar" MaxLength="200" />
+        </EntityType>
         <EntityContainer Name="SlowLearnerModelStoreContainer">
+          <EntitySet Name="PatientAttendants" EntityType="Self.PatientAttendants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientWords" EntityType="Self.PatientWords" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Words" EntityType="Self.Words" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SlowLearnerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -43,7 +70,35 @@
         </EntityType>
         <EntityContainer Name="SlowLearnerEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="PatientAttendants" EntityType="SlowLearnerModel.PatientAttendant" />
+          <EntitySet Name="PatientWords" EntityType="SlowLearnerModel.PatientWord" />
+          <EntitySet Name="Words" EntityType="SlowLearnerModel.Word" />
         </EntityContainer>
+        <EntityType Name="PatientAttendant">
+          <Key>
+            <PropertyRef Name="PatientAttendantId" />
+          </Key>
+          <Property Name="PatientAttendantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientId" Type="Int32" />
+          <Property Name="AttendantId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PatientWord">
+          <Key>
+            <PropertyRef Name="PatientWordId" />
+          </Key>
+          <Property Name="PatientWordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientId" Type="Int32" />
+          <Property Name="WordId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Word">
+          <Key>
+            <PropertyRef Name="WordId" />
+          </Key>
+          <Property Name="WordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WordText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="WordCategory" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -62,6 +117,34 @@
                 <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
                 <ScalarProperty Name="UserRole" ColumnName="UserRole" />
                 <ScalarProperty Name="ReferenceUserId" ColumnName="ReferenceUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientAttendants">
+            <EntityTypeMapping TypeName="SlowLearnerModel.PatientAttendant">
+              <MappingFragment StoreEntitySet="PatientAttendants">
+                <ScalarProperty Name="AttendantId" ColumnName="AttendantId" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="PatientAttendantId" ColumnName="PatientAttendantId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientWords">
+            <EntityTypeMapping TypeName="SlowLearnerModel.PatientWord">
+              <MappingFragment StoreEntitySet="PatientWords">
+                <ScalarProperty Name="WordId" ColumnName="WordId" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="PatientWordId" ColumnName="PatientWordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Words">
+            <EntityTypeMapping TypeName="SlowLearnerModel.Word">
+              <MappingFragment StoreEntitySet="Words">
+                <ScalarProperty Name="WordCategory" ColumnName="WordCategory" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="WordText" ColumnName="WordText" />
+                <ScalarProperty Name="WordId" ColumnName="WordId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -26,5 +26,8 @@ namespace SlowLearnerApi.Models
         }
     
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<PatientAttendant> PatientAttendants { get; set; }
+        public virtual DbSet<PatientWord> PatientWords { get; set; }
+        public virtual DbSet<Word> Words { get; set; }
     }
 }
