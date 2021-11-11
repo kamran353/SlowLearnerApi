@@ -17,14 +17,14 @@ namespace SlowLearnerApi.Controllers
         {
             try
             {
-                var Doctors = db.Users.Where(x=>x.UserRole=="Doctor" && x.IsApproved==false).ToList();
+                var Doctors = db.Users.Where(x => x.UserRole == "Doctor" && x.IsApproved == false).ToList();
 
                 return Request.CreateResponse(HttpStatusCode.OK, Doctors);
             }
             catch (Exception ex)
             {
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError,ex.Message);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
         public HttpResponseMessage GetApprovedDoctors()
@@ -48,7 +48,7 @@ namespace SlowLearnerApi.Controllers
             {
                 db.Users.Add(user);
                 db.SaveChanges();
-               return Request.CreateResponse(HttpStatusCode.OK, user);
+                return Request.CreateResponse(HttpStatusCode.OK, user);
             }
             catch (Exception ex)
             {
@@ -57,13 +57,13 @@ namespace SlowLearnerApi.Controllers
             }
         }
         [HttpGet]
-        public HttpResponseMessage LoginUser(string Username,string Userpassword)
+        public HttpResponseMessage LoginUser(string Username, string Userpassword)
         {
             try
             {
-                var user = db.Users.Where(x =>  x.UserPassword==Userpassword &&x.UserName==Username ).FirstOrDefault();
-                 return Request.CreateResponse(HttpStatusCode.OK, user);
-              
+                var user = db.Users.Where(x => x.UserPassword == Userpassword && x.UserName == Username).FirstOrDefault();
+                return Request.CreateResponse(HttpStatusCode.OK, user);
+
             }
             catch (Exception ex)
             {
@@ -97,8 +97,8 @@ namespace SlowLearnerApi.Controllers
         {
             try
             {
-                
-                return Request.CreateResponse(HttpStatusCode.OK, db.Users.Where(x=>x.ReferenceUserId==DoctorId && x.UserRole=="Patient").ToList());
+
+                return Request.CreateResponse(HttpStatusCode.OK, db.Users.Where(x => x.ReferenceUserId == DoctorId && x.UserRole == "Patient").ToList());
 
             }
             catch (Exception ex)
@@ -123,11 +123,11 @@ namespace SlowLearnerApi.Controllers
             }
         }
         [HttpGet]
-        public HttpResponseMessage Assign_PA_To_Patient(int PA_Id,int Patient_Id)
+        public HttpResponseMessage Assign_PA_To_Patient(int PA_Id, int Patient_Id)
         {
             try
             {
-                var IsExist = db.PatientAttendants.FirstOrDefault(x=>x.PatientAttendantId==PA_Id && x.PatientId==Patient_Id);
+                var IsExist = db.PatientAttendants.FirstOrDefault(x => x.PatientAttendantId == PA_Id && x.PatientId == Patient_Id);
                 if (IsExist == null)
                 {
                     IsExist = new PatientAttendant();
@@ -216,11 +216,11 @@ namespace SlowLearnerApi.Controllers
             try
             {
                 var patients = new List<User>();
-                var patientIds = db.PatientAttendants.Where(x => x.AttendantId == PA_Id).Select(x=>x.PatientId).ToList();
+                var patientIds = db.PatientAttendants.Where(x => x.AttendantId == PA_Id).Select(x => x.PatientId).ToList();
                 if (patientIds != null)
                 {
-                    patients = db.Users.Where(x=>patientIds.Contains(x.UserId) && x.UserRole=="Patient").ToList();
-                 
+                    patients = db.Users.Where(x => patientIds.Contains(x.UserId) && x.UserRole == "Patient").ToList();
+
                 }
 
                 return Request.CreateResponse(HttpStatusCode.OK, patients);
@@ -252,15 +252,28 @@ namespace SlowLearnerApi.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
+        [HttpGet]
+        public HttpResponseMessage GetLevelWords(int WordLevel)
+        {
+            try
+            {
 
+                return Request.CreateResponse(HttpStatusCode.OK, db.Words.Where(x => x.WordLevel == WordLevel).ToList());
+
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
         [HttpPost]
         public HttpResponseMessage AddNewWord()
         {
             try
             {
-                //   var httpRequest=
                 Word word = new Word();
-              
+
                 var httpRequest = HttpContext.Current.Request;
                 var keys = httpRequest.Form;
                 string path = HttpContext.Current.Server.MapPath("~/Images/");
@@ -283,7 +296,6 @@ namespace SlowLearnerApi.Controllers
                 db.Words.Add(word);
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, "Added");
-
             }
             catch (Exception ex)
             {
