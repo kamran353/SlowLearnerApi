@@ -1,9 +1,11 @@
 ﻿using SlowLearnerApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace SlowLearnerApi.Controllers
@@ -25,6 +27,20 @@ namespace SlowLearnerApi.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError,ex.Message);
             }
         }
+        public HttpResponseMessage GetApprovedDoctors()
+        {
+            try
+            {
+                var Doctors = db.Users.Where(x => x.UserRole == "Doctor" && x.IsApproved == true).ToList();
+
+                return Request.CreateResponse(HttpStatusCode.OK, Doctors);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
         [HttpPost]
         public HttpResponseMessage RegisterUser(User user)
         {
@@ -40,12 +56,12 @@ namespace SlowLearnerApi.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
-       [HttpGet]
+        [HttpGet]
         public HttpResponseMessage LoginUser(string Username,string Userpassword)
         {
             try
             {
-                var user = db.Users.Where(x =>  x.UserPassword==Userpassword &&x.UserName==Username ).ToList();
+                var user = db.Users.Where(x =>  x.UserPassword==Userpassword &&x.UserName==Username ).FirstOrDefault();
                  return Request.CreateResponse(HttpStatusCode.OK, user);
               
             }
@@ -229,6 +245,45 @@ namespace SlowLearnerApi.Controllers
                 }
 
                 return Request.CreateResponse(HttpStatusCode.OK, words);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public HttpResponseMessage AddNewWord()
+        {
+            try
+            {
+                //   var httpRequest=
+                Word word = new Word();
+              
+                var httpRequest = HttpContext.Current.Request;
+                var keys = httpRequest.Form;
+                string path = HttpContext.Current.Server.MapPath("~/Images/");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                if (httpRequest.Files.Count > 0)
+                {
+                    var postedFile = httpRequest.Files[0];
+                    var namefile = System.Guid.NewGuid() + "_" + DateTime.Now.ToString("mmss") + System.IO.Path.GetExtension(postedFile.FileName);
+                    var filePath = System.IO.Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Images/"), namefile);
+                    word.ImagePath = "Images/" + namefile;
+                    postedFile.SaveAs(filePath);
+
+                }
+                word.WordText = keys["WordText"];
+                word.WordCategory = keys["WordCategory"];
+                word.WordLevel = int.Parse(keys["WordLevel"]);
+                db.Words.Add(word);
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, "Added");
+
             }
             catch (Exception ex)
             {

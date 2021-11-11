@@ -229,6 +229,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\PatientAttendant.cs">
+      <DependentUpon>SlowlearnerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PatientWord.cs">
+      <DependentUpon>SlowlearnerModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SlowlearnerModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -245,6 +251,9 @@
       <DependentUpon>SlowlearnerModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
+      <DependentUpon>SlowlearnerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Word.cs">
       <DependentUpon>SlowlearnerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

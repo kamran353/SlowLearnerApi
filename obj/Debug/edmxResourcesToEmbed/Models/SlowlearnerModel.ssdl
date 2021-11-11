@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SlowLearnerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="PatientAttendants">
+    <Key>
+      <PropertyRef Name="PatientAttendantId" />
+    </Key>
+    <Property Name="PatientAttendantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PatientId" Type="int" />
+    <Property Name="AttendantId" Type="int" />
+  </EntityType>
+  <EntityType Name="PatientWords">
+    <Key>
+      <PropertyRef Name="PatientWordId" />
+    </Key>
+    <Property Name="PatientWordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PatientId" Type="int" />
+    <Property Name="WordId" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="1000" />
+    <Property Name="UserPhone" Type="varchar" MaxLength="100" />
+    <Property Name="UserGender" Type="varchar" MaxLength="100" />
+    <Property Name="UserPassword" Type="varchar" MaxLength="100" />
+    <Property Name="UserDOB" Type="datetime" />
+    <Property Name="IsApproved" Type="bit" />
+    <Property Name="UserRole" Type="varchar" MaxLength="100" />
+    <Property Name="ReferenceUserId" Type="int" />
+  </EntityType>
+  <EntityType Name="Words">
+    <Key>
+      <PropertyRef Name="WordId" />
+    </Key>
+    <Property Name="WordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WordText" Type="varchar(max)" />
+    <Property Name="ImagePath" Type="varchar(max)" />
+    <Property Name="WordCategory" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityContainer Name="SlowLearnerModelStoreContainer">
+    <EntitySet Name="PatientAttendants" EntityType="Self.PatientAttendants" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PatientWords" EntityType="Self.PatientWords" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Words" EntityType="Self.Words" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

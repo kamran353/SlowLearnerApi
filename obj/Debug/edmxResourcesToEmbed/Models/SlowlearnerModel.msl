@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SlowLearnerModelStoreContainer" CdmEntityContainer="SlowLearnerEntities">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="SlowLearnerModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+          <ScalarProperty Name="UserGender" ColumnName="UserGender" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="UserDOB" ColumnName="UserDOB" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+          <ScalarProperty Name="ReferenceUserId" ColumnName="ReferenceUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientAttendants">
+      <EntityTypeMapping TypeName="SlowLearnerModel.PatientAttendant">
+        <MappingFragment StoreEntitySet="PatientAttendants">
+          <ScalarProperty Name="AttendantId" ColumnName="AttendantId" />
+          <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+          <ScalarProperty Name="PatientAttendantId" ColumnName="PatientAttendantId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientWords">
+      <EntityTypeMapping TypeName="SlowLearnerModel.PatientWord">
+        <MappingFragment StoreEntitySet="PatientWords">
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+          <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+          <ScalarProperty Name="PatientWordId" ColumnName="PatientWordId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Words">
+      <EntityTypeMapping TypeName="SlowLearnerModel.Word">
+        <MappingFragment StoreEntitySet="Words">
+          <ScalarProperty Name="WordCategory" ColumnName="WordCategory" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="WordText" ColumnName="WordText" />
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

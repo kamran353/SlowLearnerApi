@@ -43,6 +43,7 @@
           <Property Name="WordText" Type="varchar(max)" />
           <Property Name="ImagePath" Type="varchar(max)" />
           <Property Name="WordCategory" Type="varchar" MaxLength="200" />
+          <Property Name="WordLevel" Type="int" />
         </EntityType>
         <EntityContainer Name="SlowLearnerModelStoreContainer">
           <EntitySet Name="PatientAttendants" EntityType="Self.PatientAttendants" Schema="dbo" store:Type="Tables" />
@@ -98,6 +99,7 @@
           <Property Name="WordText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="WordCategory" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="WordLevel" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -141,6 +143,7 @@
           <EntitySetMapping Name="Words">
             <EntityTypeMapping TypeName="SlowLearnerModel.Word">
               <MappingFragment StoreEntitySet="Words">
+                <ScalarProperty Name="WordLevel" ColumnName="WordLevel" />
                 <ScalarProperty Name="WordCategory" ColumnName="WordCategory" />
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="WordText" ColumnName="WordText" />
