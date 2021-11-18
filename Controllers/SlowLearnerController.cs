@@ -166,7 +166,7 @@ namespace SlowLearnerApi.Controllers
             }
         }
 
-        [HttpGet]
+     /*   [HttpGet]
         public HttpResponseMessage Assign_Word_To_Patient(int Word_Id, int Patient_Id)
         {
             try
@@ -208,7 +208,7 @@ namespace SlowLearnerApi.Controllers
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
-        }
+        }*/
 
         [HttpGet]
         public HttpResponseMessage PA_Patients(int PA_Id)
@@ -236,15 +236,15 @@ namespace SlowLearnerApi.Controllers
         {
             try
             {
-                var words = new List<Word>();
-                var wordIds = db.PatientWords.Where(x => x.PatientId == Patient_Id).Select(x => x.WordId).ToList();
-                if (wordIds != null)
+                var practices = new List<Practice>();
+                var practiceIds = db.PatientPractices.Where(x => x.PatientId == Patient_Id).Select(x => x.PracticeId).ToList();
+                if (practiceIds != null)
                 {
-                    words = db.Words.Where(x => wordIds.Contains(x.WordId)).ToList();
+                    practices = db.Practices.Where(x => practiceIds.Contains(x.PracticeId)).ToList();
 
                 }
 
-                return Request.CreateResponse(HttpStatusCode.OK, words);
+                return Request.CreateResponse(HttpStatusCode.OK, practices);
             }
             catch (Exception ex)
             {
@@ -253,12 +253,12 @@ namespace SlowLearnerApi.Controllers
             }
         }
         [HttpGet]
-        public HttpResponseMessage GetLevelWords(int WordLevel)
+        public HttpResponseMessage GetLevelPractices(int PracticeLevel)
         {
             try
             {
 
-                return Request.CreateResponse(HttpStatusCode.OK, db.Words.Where(x => x.WordLevel == WordLevel).ToList());
+                return Request.CreateResponse(HttpStatusCode.OK, db.Practices.Where(x => x.PracticeLevel == PracticeLevel).ToList());
 
             }
             catch (Exception ex)
@@ -268,11 +268,11 @@ namespace SlowLearnerApi.Controllers
             }
         }
         [HttpPost]
-        public HttpResponseMessage AddNewWord()
+        public HttpResponseMessage AddNewCollection()
         {
             try
             {
-                Word word = new Word();
+                Collection collection = new Collection();
 
                 var httpRequest = HttpContext.Current.Request;
                 var keys = httpRequest.Form;
@@ -286,14 +286,14 @@ namespace SlowLearnerApi.Controllers
                     var postedFile = httpRequest.Files[0];
                     var namefile = System.Guid.NewGuid() + "_" + DateTime.Now.ToString("mmss") + System.IO.Path.GetExtension(postedFile.FileName);
                     var filePath = System.IO.Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Images/"), namefile);
-                    word.ImagePath = "Images/" + namefile;
+                    collection.CollectionImage = "Images/" + namefile;
                     postedFile.SaveAs(filePath);
 
                 }
-                word.WordText = keys["WordText"];
-                word.WordCategory = keys["WordCategory"];
-                word.WordLevel = int.Parse(keys["WordLevel"]);
-                db.Words.Add(word);
+                collection.CollectionText = keys["CollectionText"];
+                collection.CollectionType = keys["CollectionType"];
+              
+                db.Collections.Add(collection);
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, "Added");
             }

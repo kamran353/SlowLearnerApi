@@ -126,3 +126,7 @@ C:\Users\kamran.gull\source\repos\SlowLearnerApi\bin\EntityFramework.SqlServer.d
 C:\Users\kamran.gull\source\repos\SlowLearnerApi\bin\EntityFramework.xml
 C:\Users\kamran.gull\source\repos\SlowLearnerApi\bin\EntityFramework.SqlServer.xml
 C:\Users\kamran.gull\source\repos\SlowLearnerApi\obj\Release\SlowLearnerApi.csproj.AssemblyReference.cache
+D:\Git\SlowLearnerApi\obj\Release\SlowLearnerApi.csproj.AssemblyReference.cache
+D:\Git\SlowLearnerApi\obj\Release\SlowLearnerApi.csproj.CoreCompileInputs.cache
+D:\Git\SlowLearnerApi\obj\Release\SlowLearnerApi.dll
+D:\Git\SlowLearnerApi\obj\Release\SlowLearnerApi.pdb

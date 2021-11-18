@@ -12,12 +12,10 @@ namespace SlowLearnerApi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Word
+    public partial class PatientPractice
     {
-        public int WordId { get; set; }
-        public string WordText { get; set; }
-        public string ImagePath { get; set; }
-        public string WordCategory { get; set; }
-        public Nullable<int> WordLevel { get; set; }
+        public int PatientPracticeId { get; set; }
+        public Nullable<int> PatientId { get; set; }
+        public Nullable<int> PracticeId { get; set; }
     }
 }
