@@ -37,6 +37,7 @@
     <EntitySetMapping Name="Words">
       <EntityTypeMapping TypeName="SlowLearnerModel.Word">
         <MappingFragment StoreEntitySet="Words">
+          <ScalarProperty Name="WordLevel" ColumnName="WordLevel" />
           <ScalarProperty Name="WordCategory" ColumnName="WordCategory" />
           <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
           <ScalarProperty Name="WordText" ColumnName="WordText" />

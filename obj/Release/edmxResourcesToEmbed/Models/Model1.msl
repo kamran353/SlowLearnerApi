@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SlowLearnerModelStoreContainer" CdmEntityContainer="SlowLearnerEntities">
+    <EntitySetMapping Name="Collections">
+      <EntityTypeMapping TypeName="SlowLearnerModel.Collection">
+        <MappingFragment StoreEntitySet="Collections">
+          <ScalarProperty Name="CollectionId" ColumnName="CollectionId" />
+          <ScalarProperty Name="CollectionType" ColumnName="CollectionType" />
+          <ScalarProperty Name="CollectionText" ColumnName="CollectionText" />
+          <ScalarProperty Name="CollectionImage" ColumnName="CollectionImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientAttendants">
+      <EntityTypeMapping TypeName="SlowLearnerModel.PatientAttendant">
+        <MappingFragment StoreEntitySet="PatientAttendants">
+          <ScalarProperty Name="PatientAttendantId" ColumnName="PatientAttendantId" />
+          <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+          <ScalarProperty Name="AttendantId" ColumnName="AttendantId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientPractices">
+      <EntityTypeMapping TypeName="SlowLearnerModel.PatientPractice">
+        <MappingFragment StoreEntitySet="PatientPractice">
+          <ScalarProperty Name="PatientPracticeId" ColumnName="PatientPracticeId" />
+          <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+          <ScalarProperty Name="PracticeId" ColumnName="PracticeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Practices">
+      <EntityTypeMapping TypeName="SlowLearnerModel.Practice">
+        <MappingFragment StoreEntitySet="Practice">
+          <ScalarProperty Name="PracticeId" ColumnName="PracticeId" />
+          <ScalarProperty Name="PracticeTitle" ColumnName="PracticeTitle" />
+          <ScalarProperty Name="PracticeLevel" ColumnName="PracticeLevel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PracticeCollections">
+      <EntityTypeMapping TypeName="SlowLearnerModel.PracticeCollection">
+        <MappingFragment StoreEntitySet="PracticeCollection">
+          <ScalarProperty Name="PracticeCollectionId" ColumnName="PracticeCollectionId" />
+          <ScalarProperty Name="PracticeId" ColumnName="PracticeId" />
+          <ScalarProperty Name="CollectionId" ColumnName="CollectionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="SlowLearnerModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+          <ScalarProperty Name="UserGender" ColumnName="UserGender" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="UserDOB" ColumnName="UserDOB" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+          <ScalarProperty Name="ReferenceUserId" ColumnName="ReferenceUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

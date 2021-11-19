@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SlowLearnerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Collections">
+          <Key>
+            <PropertyRef Name="CollectionId" />
+          </Key>
+          <Property Name="CollectionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CollectionType" Type="varchar" MaxLength="200" />
+          <Property Name="CollectionText" Type="nvarchar(max)" />
+          <Property Name="CollectionImage" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="PatientAttendants">
+          <Key>
+            <PropertyRef Name="PatientAttendantId" />
+          </Key>
+          <Property Name="PatientAttendantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientId" Type="int" />
+          <Property Name="AttendantId" Type="int" />
+        </EntityType>
+        <EntityType Name="PatientPractice">
+          <Key>
+            <PropertyRef Name="PatientPracticeId" />
+          </Key>
+          <Property Name="PatientPracticeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientId" Type="int" />
+          <Property Name="PracticeId" Type="int" />
+        </EntityType>
+        <EntityType Name="Practice">
+          <Key>
+            <PropertyRef Name="PracticeId" />
+          </Key>
+          <Property Name="PracticeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PracticeTitle" Type="nvarchar(max)" />
+          <Property Name="PracticeLevel" Type="int" />
+        </EntityType>
+        <EntityType Name="PracticeCollection">
+          <Key>
+            <PropertyRef Name="PracticeCollectionId" />
+          </Key>
+          <Property Name="PracticeCollectionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PracticeId" Type="int" />
+          <Property Name="CollectionId" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="1000" />
+          <Property Name="UserPhone" Type="varchar" MaxLength="100" />
+          <Property Name="UserGender" Type="varchar" MaxLength="100" />
+          <Property Name="UserPassword" Type="varchar" MaxLength="100" />
+          <Property Name="UserDOB" Type="datetime" />
+          <Property Name="IsApproved" Type="bit" />
+          <Property Name="UserRole" Type="varchar" MaxLength="100" />
+          <Property Name="ReferenceUserId" Type="int" />
+        </EntityType>
+        <EntityContainer Name="SlowLearnerModelStoreContainer">
+          <EntitySet Name="Collections" EntityType="Self.Collections" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientAttendants" EntityType="Self.PatientAttendants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientPractice" EntityType="Self.PatientPractice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Practice" EntityType="Self.Practice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PracticeCollection" EntityType="Self.PracticeCollection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SlowLearnerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Collection">
+          <Key>
+            <PropertyRef Name="CollectionId" />
+          </Key>
+          <Property Name="CollectionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CollectionType" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CollectionText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CollectionImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PatientAttendant">
+          <Key>
+            <PropertyRef Name="PatientAttendantId" />
+          </Key>
+          <Property Name="PatientAttendantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientId" Type="Int32" />
+          <Property Name="AttendantId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PatientPractice">
+          <Key>
+            <PropertyRef Name="PatientPracticeId" />
+          </Key>
+          <Property Name="PatientPracticeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientId" Type="Int32" />
+          <Property Name="PracticeId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Practice">
+          <Key>
+            <PropertyRef Name="PracticeId" />
+          </Key>
+          <Property Name="PracticeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PracticeTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PracticeLevel" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PracticeCollection">
+          <Key>
+            <PropertyRef Name="PracticeCollectionId" />
+          </Key>
+          <Property Name="PracticeCollectionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PracticeId" Type="Int32" />
+          <Property Name="CollectionId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="UserPhone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserGender" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserDOB" Type="DateTime" Precision="3" />
+          <Property Name="IsApproved" Type="Boolean" />
+          <Property Name="UserRole" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceUserId" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="SlowLearnerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Collections" EntityType="Self.Collection" />
+          <EntitySet Name="PatientAttendants" EntityType="Self.PatientAttendant" />
+          <EntitySet Name="PatientPractices" EntityType="Self.PatientPractice" />
+          <EntitySet Name="Practices" EntityType="Self.Practice" />
+          <EntitySet Name="PracticeCollections" EntityType="Self.PracticeCollection" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SlowLearnerModelStoreContainer" CdmEntityContainer="SlowLearnerEntities">
+          <EntitySetMapping Name="Collections">
+            <EntityTypeMapping TypeName="SlowLearnerModel.Collection">
+              <MappingFragment StoreEntitySet="Collections">
+                <ScalarProperty Name="CollectionId" ColumnName="CollectionId" />
+                <ScalarProperty Name="CollectionType" ColumnName="CollectionType" />
+                <ScalarProperty Name="CollectionText" ColumnName="CollectionText" />
+                <ScalarProperty Name="CollectionImage" ColumnName="CollectionImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientAttendants">
+            <EntityTypeMapping TypeName="SlowLearnerModel.PatientAttendant">
+              <MappingFragment StoreEntitySet="PatientAttendants">
+                <ScalarProperty Name="PatientAttendantId" ColumnName="PatientAttendantId" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="AttendantId" ColumnName="AttendantId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientPractices">
+            <EntityTypeMapping TypeName="SlowLearnerModel.PatientPractice">
+              <MappingFragment StoreEntitySet="PatientPractice">
+                <ScalarProperty Name="PatientPracticeId" ColumnName="PatientPracticeId" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="PracticeId" ColumnName="PracticeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Practices">
+            <EntityTypeMapping TypeName="SlowLearnerModel.Practice">
+              <MappingFragment StoreEntitySet="Practice">
+                <ScalarProperty Name="PracticeId" ColumnName="PracticeId" />
+                <ScalarProperty Name="PracticeTitle" ColumnName="PracticeTitle" />
+                <ScalarProperty Name="PracticeLevel" ColumnName="PracticeLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PracticeCollections">
+            <EntityTypeMapping TypeName="SlowLearnerModel.PracticeCollection">
+              <MappingFragment StoreEntitySet="PracticeCollection">
+                <ScalarProperty Name="PracticeCollectionId" ColumnName="PracticeCollectionId" />
+                <ScalarProperty Name="PracticeId" ColumnName="PracticeId" />
+                <ScalarProperty Name="CollectionId" ColumnName="CollectionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SlowLearnerModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+                <ScalarProperty Name="UserGender" ColumnName="UserGender" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserDOB" ColumnName="UserDOB" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+                <ScalarProperty Name="ReferenceUserId" ColumnName="ReferenceUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

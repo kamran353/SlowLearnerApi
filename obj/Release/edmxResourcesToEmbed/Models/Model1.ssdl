@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="SlowLearnerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Collections">
+    <Key>
+      <PropertyRef Name="CollectionId" />
+    </Key>
+    <Property Name="CollectionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CollectionType" Type="varchar" MaxLength="200" />
+    <Property Name="CollectionText" Type="nvarchar(max)" />
+    <Property Name="CollectionImage" Type="varchar(max)" />
+  </EntityType>
   <EntityType Name="PatientAttendants">
     <Key>
       <PropertyRef Name="PatientAttendantId" />
@@ -8,13 +17,29 @@
     <Property Name="PatientId" Type="int" />
     <Property Name="AttendantId" Type="int" />
   </EntityType>
-  <EntityType Name="PatientWords">
+  <EntityType Name="PatientPractice">
     <Key>
-      <PropertyRef Name="PatientWordId" />
+      <PropertyRef Name="PatientPracticeId" />
     </Key>
-    <Property Name="PatientWordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PatientPracticeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PatientId" Type="int" />
-    <Property Name="WordId" Type="int" />
+    <Property Name="PracticeId" Type="int" />
+  </EntityType>
+  <EntityType Name="Practice">
+    <Key>
+      <PropertyRef Name="PracticeId" />
+    </Key>
+    <Property Name="PracticeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PracticeTitle" Type="nvarchar(max)" />
+    <Property Name="PracticeLevel" Type="int" />
+  </EntityType>
+  <EntityType Name="PracticeCollection">
+    <Key>
+      <PropertyRef Name="PracticeCollectionId" />
+    </Key>
+    <Property Name="PracticeCollectionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PracticeId" Type="int" />
+    <Property Name="CollectionId" Type="int" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -30,20 +55,12 @@
     <Property Name="UserRole" Type="varchar" MaxLength="100" />
     <Property Name="ReferenceUserId" Type="int" />
   </EntityType>
-  <EntityType Name="Words">
-    <Key>
-      <PropertyRef Name="WordId" />
-    </Key>
-    <Property Name="WordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="WordText" Type="varchar(max)" />
-    <Property Name="ImagePath" Type="varchar(max)" />
-    <Property Name="WordCategory" Type="varchar" MaxLength="200" />
-    <Property Name="WordLevel" Type="int" />
-  </EntityType>
   <EntityContainer Name="SlowLearnerModelStoreContainer">
+    <EntitySet Name="Collections" EntityType="Self.Collections" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PatientAttendants" EntityType="Self.PatientAttendants" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="PatientWords" EntityType="Self.PatientWords" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PatientPractice" EntityType="Self.PatientPractice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Practice" EntityType="Self.Practice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PracticeCollection" EntityType="Self.PracticeCollection" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Words" EntityType="Self.Words" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

@@ -166,49 +166,49 @@ namespace SlowLearnerApi.Controllers
             }
         }
 
-     /*   [HttpGet]
-        public HttpResponseMessage Assign_Word_To_Patient(int Word_Id, int Patient_Id)
-        {
-            try
-            {
-                var IsExist = db.PatientWords.FirstOrDefault(x => x.WordId == Word_Id && x.PatientId == Patient_Id);
-                if (IsExist == null)
-                {
-                    IsExist = new PatientWord();
-                    IsExist.PatientId = Patient_Id;
-                    IsExist.WordId = Word_Id;
-                    db.PatientWords.Add(IsExist);
-                    db.SaveChanges();
-                }
+        /*   [HttpGet]
+           public HttpResponseMessage Assign_Word_To_Patient(int Word_Id, int Patient_Id)
+           {
+               try
+               {
+                   var IsExist = db.PatientWords.FirstOrDefault(x => x.WordId == Word_Id && x.PatientId == Patient_Id);
+                   if (IsExist == null)
+                   {
+                       IsExist = new PatientWord();
+                       IsExist.PatientId = Patient_Id;
+                       IsExist.WordId = Word_Id;
+                       db.PatientWords.Add(IsExist);
+                       db.SaveChanges();
+                   }
 
-                return Request.CreateResponse(HttpStatusCode.OK, "Assigned");
-            }
-            catch (Exception ex)
-            {
+                   return Request.CreateResponse(HttpStatusCode.OK, "Assigned");
+               }
+               catch (Exception ex)
+               {
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
-            }
-        }
-        [HttpGet]
-        public HttpResponseMessage UnAssign_Word_From_Patient(int Word_Id, int Patient_Id)
-        {
-            try
-            {
-                var IsExist = db.PatientWords.FirstOrDefault(x => x.WordId == Word_Id && x.PatientId == Patient_Id);
-                if (IsExist != null)
-                {
-                    db.PatientWords.Remove(IsExist);
-                    db.SaveChanges();
-                }
+                   return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+               }
+           }
+           [HttpGet]
+           public HttpResponseMessage UnAssign_Word_From_Patient(int Word_Id, int Patient_Id)
+           {
+               try
+               {
+                   var IsExist = db.PatientWords.FirstOrDefault(x => x.WordId == Word_Id && x.PatientId == Patient_Id);
+                   if (IsExist != null)
+                   {
+                       db.PatientWords.Remove(IsExist);
+                       db.SaveChanges();
+                   }
 
-                return Request.CreateResponse(HttpStatusCode.OK, "UnAssigned");
-            }
-            catch (Exception ex)
-            {
+                   return Request.CreateResponse(HttpStatusCode.OK, "UnAssigned");
+               }
+               catch (Exception ex)
+               {
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
-            }
-        }*/
+                   return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+               }
+           }*/
 
         [HttpGet]
         public HttpResponseMessage PA_Patients(int PA_Id)
@@ -292,7 +292,7 @@ namespace SlowLearnerApi.Controllers
                 }
                 collection.CollectionText = keys["CollectionText"];
                 collection.CollectionType = keys["CollectionType"];
-              
+
                 db.Collections.Add(collection);
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, "Added");

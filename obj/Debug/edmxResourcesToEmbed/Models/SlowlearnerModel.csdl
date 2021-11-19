@@ -44,5 +44,6 @@
     <Property Name="WordText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="WordCategory" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="WordLevel" Type="Int32" />
   </EntityType>
 </Schema>

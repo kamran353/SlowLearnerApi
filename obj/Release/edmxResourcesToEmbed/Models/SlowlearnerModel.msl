@@ -25,40 +25,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Collections">
-      <EntityTypeMapping TypeName="SlowLearnerModel.Collection">
-        <MappingFragment StoreEntitySet="Collections">
-          <ScalarProperty Name="CollectionImage" ColumnName="CollectionImage" />
-          <ScalarProperty Name="CollectionText" ColumnName="CollectionText" />
-          <ScalarProperty Name="CollectionType" ColumnName="CollectionType" />
-          <ScalarProperty Name="CollectionId" ColumnName="CollectionId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Practices">
-      <EntityTypeMapping TypeName="SlowLearnerModel.Practice">
-        <MappingFragment StoreEntitySet="Practice">
-          <ScalarProperty Name="PracticeLevel" ColumnName="PracticeLevel" />
-          <ScalarProperty Name="PracticeTitle" ColumnName="PracticeTitle" />
-          <ScalarProperty Name="PracticeId" ColumnName="PracticeId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PracticeCollections">
-      <EntityTypeMapping TypeName="SlowLearnerModel.PracticeCollection">
-        <MappingFragment StoreEntitySet="PracticeCollection">
-          <ScalarProperty Name="CollectionId" ColumnName="CollectionId" />
-          <ScalarProperty Name="PracticeId" ColumnName="PracticeId" />
-          <ScalarProperty Name="PracticeCollectionId" ColumnName="PracticeCollectionId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PatientPractices">
-      <EntityTypeMapping TypeName="SlowLearnerModel.PatientPractice">
-        <MappingFragment StoreEntitySet="PatientPractice">
-          <ScalarProperty Name="PracticeId" ColumnName="PracticeId" />
+    <EntitySetMapping Name="PatientWords">
+      <EntityTypeMapping TypeName="SlowLearnerModel.PatientWord">
+        <MappingFragment StoreEntitySet="PatientWords">
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
           <ScalarProperty Name="PatientId" ColumnName="PatientId" />
-          <ScalarProperty Name="PatientPracticeId" ColumnName="PatientPracticeId" />
+          <ScalarProperty Name="PatientWordId" ColumnName="PatientWordId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Words">
+      <EntityTypeMapping TypeName="SlowLearnerModel.Word">
+        <MappingFragment StoreEntitySet="Words">
+          <ScalarProperty Name="WordLevel" ColumnName="WordLevel" />
+          <ScalarProperty Name="WordCategory" ColumnName="WordCategory" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="WordText" ColumnName="WordText" />
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
