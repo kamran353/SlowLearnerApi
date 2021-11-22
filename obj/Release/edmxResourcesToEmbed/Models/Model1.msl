@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Collections">
       <EntityTypeMapping TypeName="SlowLearnerModel.Collection">
         <MappingFragment StoreEntitySet="Collections">
+          <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
           <ScalarProperty Name="CollectionId" ColumnName="CollectionId" />
           <ScalarProperty Name="CollectionType" ColumnName="CollectionType" />
           <ScalarProperty Name="CollectionText" ColumnName="CollectionText" />
@@ -32,6 +33,7 @@
     <EntitySetMapping Name="Practices">
       <EntityTypeMapping TypeName="SlowLearnerModel.Practice">
         <MappingFragment StoreEntitySet="Practice">
+          <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
           <ScalarProperty Name="PracticeId" ColumnName="PracticeId" />
           <ScalarProperty Name="PracticeTitle" ColumnName="PracticeTitle" />
           <ScalarProperty Name="PracticeLevel" ColumnName="PracticeLevel" />

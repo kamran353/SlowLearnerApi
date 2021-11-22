@@ -8,6 +8,7 @@
     <Property Name="CollectionType" Type="varchar" MaxLength="200" />
     <Property Name="CollectionText" Type="nvarchar(max)" />
     <Property Name="CollectionImage" Type="varchar(max)" />
+    <Property Name="DoctorId" Type="int" />
   </EntityType>
   <EntityType Name="PatientAttendants">
     <Key>
@@ -32,6 +33,7 @@
     <Property Name="PracticeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PracticeTitle" Type="nvarchar(max)" />
     <Property Name="PracticeLevel" Type="int" />
+    <Property Name="DoctorId" Type="int" />
   </EntityType>
   <EntityType Name="PracticeCollection">
     <Key>

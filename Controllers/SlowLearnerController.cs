@@ -232,7 +232,7 @@ namespace SlowLearnerApi.Controllers
             }
         }
         [HttpGet]
-        public HttpResponseMessage Patient_Words(int Patient_Id)
+        public HttpResponseMessage Patient_Practices(int Patient_Id)
         {
             try
             {
@@ -252,13 +252,57 @@ namespace SlowLearnerApi.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
-        [HttpGet]
-        public HttpResponseMessage GetLevelPractices(int PracticeLevel)
+        [HttpPost]
+        public HttpResponseMessage AddNewPractice(PracticeModel NewPractice)
         {
             try
             {
+                Practice practice = new Practice();
+                List<PracticeCollection> practiceCollections = new List<PracticeCollection>();
+                practice.PracticeTitle = NewPractice.Title;
+                practice.PracticeLevel = NewPractice.LevelNo;
+                db.Practices.Add(practice);
+                db.SaveChanges();
+                var CollectoinIds = NewPractice.CollectionIds.Split(',').ToList();
+                foreach (var item in CollectoinIds)
+                {
+                    practiceCollections.Add(new PracticeCollection { CollectionId = int.Parse(item), PracticeId = practice.PracticeId });
+                }
+                if (practiceCollections.Count > 0)
+                {
+                    db.PracticeCollections.AddRange(practiceCollections);
+                    db.SaveChanges();
+                }
+                 return Request.CreateResponse(HttpStatusCode.OK, "Added");
+            }
+            catch (Exception ex)
+            {
 
-                return Request.CreateResponse(HttpStatusCode.OK, db.Practices.Where(x => x.PracticeLevel == PracticeLevel).ToList());
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+        [HttpGet]
+        public HttpResponseMessage GetMyLevelPractices(int PracticeLevel,int DoctorId)
+        {
+            try
+            {
+                var levelPractices = db.Practices.Where(x => x.PracticeLevel == PracticeLevel && x.DoctorId==DoctorId).ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, levelPractices);
+
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+        [HttpGet]
+        public HttpResponseMessage GetMyCollection(string Type, int DoctorId)
+        {
+            try
+            {
+                var  MyCollections = db.Collections.Where(x => x.CollectionType == Type && x.DoctorId == DoctorId).ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, MyCollections);
 
             }
             catch (Exception ex)
@@ -292,7 +336,7 @@ namespace SlowLearnerApi.Controllers
                 }
                 collection.CollectionText = keys["CollectionText"];
                 collection.CollectionType = keys["CollectionType"];
-
+                collection.DoctorId =int.Parse(keys["DoctorId"]);
                 db.Collections.Add(collection);
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, "Added");

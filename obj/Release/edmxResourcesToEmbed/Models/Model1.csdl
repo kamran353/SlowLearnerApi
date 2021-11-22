@@ -8,6 +8,7 @@
     <Property Name="CollectionType" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="CollectionText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CollectionImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DoctorId" Type="Int32" />
   </EntityType>
   <EntityType Name="PatientAttendant">
     <Key>
@@ -32,6 +33,7 @@
     <Property Name="PracticeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="PracticeTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="PracticeLevel" Type="Int32" />
+    <Property Name="DoctorId" Type="Int32" />
   </EntityType>
   <EntityType Name="PracticeCollection">
     <Key>

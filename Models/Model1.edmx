@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SlowLearnerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SlowLearnerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Collections">
           <Key>
             <PropertyRef Name="CollectionId" />
@@ -13,6 +13,7 @@
           <Property Name="CollectionType" Type="varchar" MaxLength="200" />
           <Property Name="CollectionText" Type="nvarchar(max)" />
           <Property Name="CollectionImage" Type="varchar(max)" />
+          <Property Name="DoctorId" Type="int" />
         </EntityType>
         <EntityType Name="PatientAttendants">
           <Key>
@@ -37,6 +38,7 @@
           <Property Name="PracticeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PracticeTitle" Type="nvarchar(max)" />
           <Property Name="PracticeLevel" Type="int" />
+          <Property Name="DoctorId" Type="int" />
         </EntityType>
         <EntityType Name="PracticeCollection">
           <Key>
@@ -68,8 +70,7 @@
           <EntitySet Name="PracticeCollection" EntityType="Self.PracticeCollection" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SlowLearnerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -81,6 +82,7 @@
           <Property Name="CollectionType" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="CollectionText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CollectionImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DoctorId" Type="Int32" />
         </EntityType>
         <EntityType Name="PatientAttendant">
           <Key>
@@ -105,6 +107,7 @@
           <Property Name="PracticeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PracticeTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PracticeLevel" Type="Int32" />
+          <Property Name="DoctorId" Type="Int32" />
         </EntityType>
         <EntityType Name="PracticeCollection">
           <Key>
@@ -145,6 +148,7 @@
           <EntitySetMapping Name="Collections">
             <EntityTypeMapping TypeName="SlowLearnerModel.Collection">
               <MappingFragment StoreEntitySet="Collections">
+                <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
                 <ScalarProperty Name="CollectionId" ColumnName="CollectionId" />
                 <ScalarProperty Name="CollectionType" ColumnName="CollectionType" />
                 <ScalarProperty Name="CollectionText" ColumnName="CollectionText" />
@@ -173,6 +177,7 @@
           <EntitySetMapping Name="Practices">
             <EntityTypeMapping TypeName="SlowLearnerModel.Practice">
               <MappingFragment StoreEntitySet="Practice">
+                <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
                 <ScalarProperty Name="PracticeId" ColumnName="PracticeId" />
                 <ScalarProperty Name="PracticeTitle" ColumnName="PracticeTitle" />
                 <ScalarProperty Name="PracticeLevel" ColumnName="PracticeLevel" />

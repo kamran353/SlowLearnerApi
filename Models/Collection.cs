@@ -18,5 +18,6 @@ namespace SlowLearnerApi.Models
         public string CollectionType { get; set; }
         public string CollectionText { get; set; }
         public string CollectionImage { get; set; }
+        public Nullable<int> DoctorId { get; set; }
     }
 }
