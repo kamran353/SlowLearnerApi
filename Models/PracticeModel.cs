@@ -9,6 +9,7 @@ namespace SlowLearnerApi.Models
     {
         public string Title { get; set; }
         public int LevelNo { get; set; }
+        public int DoctorId { get; set; }
         public string CollectionIds { get; set; }
     }
 }

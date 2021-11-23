@@ -93,22 +93,7 @@ namespace SlowLearnerApi.Controllers
             }
         }
         [HttpGet]
-        public HttpResponseMessage GetMyPatients(int DoctorId)
-        {
-            try
-            {
-
-                return Request.CreateResponse(HttpStatusCode.OK, db.Users.Where(x => x.ReferenceUserId == DoctorId && x.UserRole == "Patient").ToList());
-
-            }
-            catch (Exception ex)
-            {
-
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
-            }
-        }
-        [HttpGet]
-        public HttpResponseMessage GetMyPA(int DoctorId)
+        public HttpResponseMessage GetMyAssistents(int DoctorId)
         {
             try
             {
@@ -122,6 +107,22 @@ namespace SlowLearnerApi.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
+        [HttpGet]
+        public HttpResponseMessage GetPAPatients(int PAId)
+        {
+            try
+            {
+
+                return Request.CreateResponse(HttpStatusCode.OK, db.Users.Where(x => x.ReferenceUserId == PAId && x.UserRole == "Patient").ToList());
+
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+     
         [HttpGet]
         public HttpResponseMessage Assign_PA_To_Patient(int PA_Id, int Patient_Id)
         {
@@ -260,6 +261,7 @@ namespace SlowLearnerApi.Controllers
                 Practice practice = new Practice();
                 List<PracticeCollection> practiceCollections = new List<PracticeCollection>();
                 practice.PracticeTitle = NewPractice.Title;
+                practice.DoctorId = NewPractice.DoctorId;
                 practice.PracticeLevel = NewPractice.LevelNo;
                 db.Practices.Add(practice);
                 db.SaveChanges();
@@ -301,7 +303,24 @@ namespace SlowLearnerApi.Controllers
         {
             try
             {
-                var  MyCollections = db.Collections.Where(x => x.CollectionType == Type && x.DoctorId == DoctorId).ToList();
+                var  MyCollections = db.Collections.Where(x => x.CollectionType == Type && x.DoctorId == DoctorId).Select(x=>new {
+                x.CollectionText,x.CollectionId,x.CollectionImage,IsSelected=false}).ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, MyCollections);
+
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+        [HttpGet]
+        public HttpResponseMessage GetPracticeCollection(int PracticeId)
+        {
+            try
+            {
+                var CollectionIds = db.PracticeCollections.Where(x => x.PracticeId == PracticeId).Select(x => x.CollectionId).ToList();
+                var MyCollections = db.Collections.Where(x =>CollectionIds.Contains(x.CollectionId)).ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, MyCollections);
 
             }

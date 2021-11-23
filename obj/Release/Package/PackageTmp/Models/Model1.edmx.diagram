@@ -6,10 +6,10 @@
     <edmx:Diagrams>
       <Diagram DiagramId="e51f17b7b74847a9ad6c555064cadfb1" Name="Diagram1">
         <EntityTypeShape EntityType="SlowLearnerModel.Collection" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SlowLearnerModel.PatientAttendant" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SlowLearnerModel.PatientAttendant" Width="2" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SlowLearnerModel.PatientPractice" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SlowLearnerModel.Practice" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SlowLearnerModel.PracticeCollection" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SlowLearnerModel.PracticeCollection" Width="3" PointX="5" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SlowLearnerModel.User" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
