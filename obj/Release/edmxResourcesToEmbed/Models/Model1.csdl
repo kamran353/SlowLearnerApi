@@ -64,5 +64,27 @@
     <EntitySet Name="Practices" EntityType="Self.Practice" />
     <EntitySet Name="PracticeCollections" EntityType="Self.PracticeCollection" />
     <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="AppoinmentPractices" EntityType="SlowLearnerModel.AppoinmentPractice" />
+    <EntitySet Name="Appointments" EntityType="SlowLearnerModel.Appointment" />
   </EntityContainer>
+  <EntityType Name="AppoinmentPractice">
+    <Key>
+      <PropertyRef Name="AppPracticeId" />
+    </Key>
+    <Property Name="AppPracticeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AppId" Type="Int32" />
+    <Property Name="PracticeId" Type="Int32" />
+    <Property Name="PaRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Appointment">
+    <Key>
+      <PropertyRef Name="AppId" />
+    </Key>
+    <Property Name="AppId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AppDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="DoctorId" Type="Int32" />
+    <Property Name="PatientId" Type="Int32" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

@@ -1,5 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="SlowLearnerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AppoinmentPractice">
+    <Key>
+      <PropertyRef Name="AppPracticeId" />
+    </Key>
+    <Property Name="AppPracticeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AppId" Type="int" />
+    <Property Name="PracticeId" Type="int" />
+    <Property Name="PaRemarks" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Appointment">
+    <Key>
+      <PropertyRef Name="AppId" />
+    </Key>
+    <Property Name="AppId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AppDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="DoctorId" Type="int" />
+    <Property Name="PatientId" Type="int" />
+    <Property Name="Remarks" Type="nvarchar(max)" />
+  </EntityType>
   <EntityType Name="Collections">
     <Key>
       <PropertyRef Name="CollectionId" />
@@ -58,6 +78,8 @@
     <Property Name="ReferenceUserId" Type="int" />
   </EntityType>
   <EntityContainer Name="SlowLearnerModelStoreContainer">
+    <EntitySet Name="AppoinmentPractice" EntityType="Self.AppoinmentPractice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Appointment" EntityType="Self.Appointment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Collections" EntityType="Self.Collections" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PatientAttendants" EntityType="Self.PatientAttendants" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PatientPractice" EntityType="Self.PatientPractice" Schema="dbo" store:Type="Tables" />

@@ -232,6 +232,32 @@ namespace SlowLearnerApi.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
+
+        [HttpGet]
+        public HttpResponseMessage  MyCurrentPractices(int Patient_Id,int AppId)
+        {
+            try
+            {
+                var practices = new List<Practice>();
+                var CurrentApp = db.Appointments.Where(x => x.PatientId == Patient_Id && x.IsActive == true).FirstOrDefault();
+                if (CurrentApp != null)
+                {
+                    if (AppId == 0)
+                    {
+                         AppId = CurrentApp.AppId;
+                    }
+                    var practicesId = db.AppoinmentPractices.Where(x => x.AppId == AppId).Select(x => x.PracticeId).ToList();
+                    practices = db.Practices.Where(x => practicesId.Contains(x.PracticeId)).ToList();
+                }
+                practices = db.Practices.ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, practices);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
         [HttpGet]
         public HttpResponseMessage Patient_Practices(int Patient_Id)
         {

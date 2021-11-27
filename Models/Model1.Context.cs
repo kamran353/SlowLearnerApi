@@ -31,5 +31,7 @@ namespace SlowLearnerApi.Models
         public virtual DbSet<Practice> Practices { get; set; }
         public virtual DbSet<PracticeCollection> PracticeCollections { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<AppoinmentPractice> AppoinmentPractices { get; set; }
+        public virtual DbSet<Appointment> Appointments { get; set; }
     }
 }
