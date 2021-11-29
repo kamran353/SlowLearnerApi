@@ -86,5 +86,6 @@
     <Property Name="DoctorId" Type="Int32" />
     <Property Name="PatientId" Type="Int32" />
     <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LevelNo" Type="Int32" />
   </EntityType>
 </Schema>

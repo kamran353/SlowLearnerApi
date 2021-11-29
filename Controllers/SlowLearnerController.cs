@@ -392,5 +392,20 @@ namespace SlowLearnerApi.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
+        [HttpPost]
+        public HttpResponseMessage SetNewAppointment(Appointment app)
+        {
+            try
+            {
+                db.Appointments.Add(app);
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, "Added");
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
     }
 }

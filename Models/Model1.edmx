@@ -24,6 +24,7 @@
           <Property Name="DoctorId" Type="int" />
           <Property Name="PatientId" Type="int" />
           <Property Name="Remarks" Type="nvarchar(max)" />
+          <Property Name="LevelNo" Type="int" />
         </EntityType>
         <EntityType Name="Collections">
           <Key>
@@ -182,6 +183,7 @@
           <Property Name="DoctorId" Type="Int32" />
           <Property Name="PatientId" Type="Int32" />
           <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LevelNo" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -265,6 +267,7 @@
           <EntitySetMapping Name="Appointments">
             <EntityTypeMapping TypeName="SlowLearnerModel.Appointment">
               <MappingFragment StoreEntitySet="Appointment">
+                <ScalarProperty Name="LevelNo" ColumnName="LevelNo" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="PatientId" ColumnName="PatientId" />
                 <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />

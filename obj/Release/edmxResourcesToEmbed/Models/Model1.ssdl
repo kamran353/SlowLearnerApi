@@ -19,6 +19,7 @@
     <Property Name="DoctorId" Type="int" />
     <Property Name="PatientId" Type="int" />
     <Property Name="Remarks" Type="nvarchar(max)" />
+    <Property Name="LevelNo" Type="int" />
   </EntityType>
   <EntityType Name="Collections">
     <Key>

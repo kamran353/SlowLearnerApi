@@ -20,5 +20,6 @@ namespace SlowLearnerApi.Models
         public Nullable<int> DoctorId { get; set; }
         public Nullable<int> PatientId { get; set; }
         public string Remarks { get; set; }
+        public Nullable<int> LevelNo { get; set; }
     }
 }

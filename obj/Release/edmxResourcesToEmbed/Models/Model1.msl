@@ -77,6 +77,7 @@
     <EntitySetMapping Name="Appointments">
       <EntityTypeMapping TypeName="SlowLearnerModel.Appointment">
         <MappingFragment StoreEntitySet="Appointment">
+          <ScalarProperty Name="LevelNo" ColumnName="LevelNo" />
           <ScalarProperty Name="Remarks" ColumnName="Remarks" />
           <ScalarProperty Name="PatientId" ColumnName="PatientId" />
           <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
